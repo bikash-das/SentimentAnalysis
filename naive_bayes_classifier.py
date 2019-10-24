@@ -1,17 +1,11 @@
-# Refactoring Code
 from nltk.corpus import stopwords 
 from nltk.tokenize import word_tokenize 
 from collections import Counter
 import numpy as np
 class NB:
-    def __init__(self):
-        # read reviews and labels
-        g = open('reviews.txt','r') #what we know
-        self.reviews = list(map(lambda x:x[:-1], g.readlines()))
-        g.close()
-        g = open('labels.txt','r') # what we want to know
-        self.labels = list(map(lambda x:x[:-1].upper(), g.readlines()))
-        g.close()
+    def __init__(self,reviews,labels):
+        self.reviews = reviews
+        self.labels = labels
         
         assert(len(self.reviews) == len(self.labels))
         
@@ -28,8 +22,8 @@ class NB:
         self.pos_label_count = 0
         self.neg_label_count = 0
         
-        self.process(self.reviews[:24000], self.labels[:24000])
-        self.fit(self.reviews[24000:], self.labels[24000:])
+        self.process(self.reviews[:40000], self.labels[:40000])
+        self.fit(self.reviews[10000:], self.labels[10000:])
         
         
     
@@ -110,8 +104,21 @@ class NB:
             if(test_value == l):
                 correct += 1 
         print("total correct: {} and incorrect: {}".format(correct,len(test_set_labels)-correct))
-        
-            
 
-        
-nb = NB()
+import csv
+filename = 'IMDB_dataset_sa.csv'
+with open(filename, 'r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    reviews = []
+    labels = []
+    # extract rows
+    i= 0
+    for row in csvreader:
+        if csvreader.line_num == 1:
+            continue  #skip first row
+        reviews.append(row[0])
+        labels.append(row[1].upper())
+    print("Done.")
+
+nb = NB(reviews,labels)
+
