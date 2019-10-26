@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="display-1 text-success">Sentiment Analysis</h1>
+  <p class="text-muted">Enter a Review to check it's polarity </p><form>
+    <div class="form-group">      
+      <textarea class="form-control" rows="5" id="review" placeholder="Enter a Review"></textarea>
+    </div>
+  </form>
+  <button type="button"  onclick="show()" class="btn btn-primary btn-lg btn-block">Analyse</button>
+  <br>
+  <p id="result" class="text-info">Result will be displayed here</p>
+</div>
+
+</body>
+<script>
+function show(){
+    let review = document.getElementById("review").value;
+    if(review.length > 0 ){
+        // Send the data to server
+    }else{
+        //set empty text field 
+        document.getElementById("result").innerHTML = "Empty TextField";
+    }
+    
+}
+</script>
+</html>
