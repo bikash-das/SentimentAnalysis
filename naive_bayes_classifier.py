@@ -1,4 +1,4 @@
-from nltk.corpus import stopwords 
+from nltk.corpus import stopwords # for filtering review by removing stopwords like 'the', 'is', 'they', ...
 from nltk.tokenize import word_tokenize 
 from collections import Counter
 import numpy as np
@@ -122,3 +122,7 @@ with open(filename, 'r') as csvfile:
 
 nb = NB(reviews,labels)
 
+# predict the sentiment on new reviews (taken samples from paralleldots)
+g = open('parallel_dots_sample.txt','r')
+for line in g.readlines():
+    print("{} -> Prediction: {}",line.strip(),nb.test(line))
