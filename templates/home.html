@@ -53,19 +53,19 @@
 
       <form method="POST">
         {{ form.hidden_tag() }}
-         {{ form.review(class='form-control placeholder="Enter a review"') }}
+         {{ form.review(class='form-control',rows=4,placeholder="Enter a review") }}
          <br>
         {{ form.submit(class='btn btn-primary btn-lg') }}
       </form>
       <br>
       <div>
       <p>
-        {% if pred == 'positive' %} 
+        {% if pred == 'POSITIVE' %} 
           <!-- {{ pred }}  -->
           <img id="positive" src="static/positive.png">
           <p class="text-muted">positive</p>
-        {% elif pred == 'negative' %}
-        <img id="negatvie" src="static/negative.png">
+        {% elif pred == 'NEGATIVE' %}
+        <img id="negative" src="static/negative.png">
         <p class="text-muted">Negative</p>
         {% endif %}
       </p>
