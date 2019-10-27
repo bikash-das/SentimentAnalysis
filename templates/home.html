@@ -57,10 +57,16 @@
          <br>
         {{ form.submit(class='btn btn-primary btn-lg') }}
       </form>
+      <br>
       <div>
       <p>
-        {% if pred %} 
-          {{ pred }} 
+        {% if pred == 'positive' %} 
+          <!-- {{ pred }}  -->
+          <img id="positive" src="static/positive.png">
+          <p class="text-muted">positive</p>
+        {% elif pred == 'negative' %}
+        <img id="negatvie" src="static/negative.png">
+        <p class="text-muted">Negative</p>
         {% endif %}
       </p>
       </div>
