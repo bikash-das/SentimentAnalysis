@@ -9,30 +9,66 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="container">
-  <h1 class="display-1 text-success">Sentiment Analysis</h1>
-  <p class="text-muted">Enter a Review to check it's polarity </p><form>
-    <div class="form-group">      
-      <textarea class="form-control" rows="5" id="review" placeholder="Enter a Review"></textarea>
+<!-- Nav bar from ebook page: 9 -->
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+             data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Sentiment Analysis</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
     </div>
-  </form>
-  <button type="button"  onclick="show()" class="btn btn-primary btn-lg btn-block">Analyse</button>
-  <br>
-  <p id="result" class="text-info">Result will be displayed here</p>
 </div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class = "row">    
+    <div class="col-sm-4">
+        <h2 class="text-success">Sentiment Analysis</h2>
+        <p class="text-muted">Enter a Review to check it's polarity </p>
+        <br>
+        <!-- <form>
+          <div class="form-group">      
+            <textarea class="form-control" rows="5"  id="review" placeholder="Enter a Review"></textarea>
+          </div>
+        </form>
+        <button type="button"  onclick="show()" class="btn btn-primary btn-lg ">Analyse</button>
+        <br>
+        <p id="result" class="text-info">{{ result }} </p>
+      </div> -->
+   
+
+      <form method="POST">
+        {{ form.hidden_tag() }}
+         {{ form.review(class='form-control placeholder="Enter a review"') }}
+         <br>
+        {{ form.submit(class='btn btn-primary btn-lg') }}
+      </form>
+      <div>
+      <p>
+        {% if pred %} 
+          {{ pred }} 
+        {% endif %}
+      </p>
+      </div>
+      <div class="col-sm-8"></div>
+    </div>
+  </div>
+
+ {% endblock %}
 
 </body>
-<script>
-function show(){
-    let review = document.getElementById("review").value;
-    if(review.length > 0 ){
-        // Send the data to server
-    }else{
-        //set empty text field 
-        document.getElementById("result").innerHTML = "Empty TextField";
-    }
-    
-}
-</script>
 </html>
