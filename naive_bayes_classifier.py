@@ -103,7 +103,7 @@ class NB:
             test_value = self.test(r)
             if(test_value == l):
                 correct += 1 
-        print("total correct: {} and incorrect: {}".format(correct,len(test_set_labels)-correct))
+        # print("total correct: {} and incorrect: {}".format(correct,len(test_set_labels)-correct))
 
 import csv
 filename = 'IMDB_dataset_sa.csv'
@@ -118,11 +118,11 @@ with open(filename, 'r') as csvfile:
             continue  #skip first row
         reviews.append(row[0])
         labels.append(row[1].upper())
-    print("Done.")
+    # print("Done.")
 
 nb = NB(reviews,labels)
 
 # predict the sentiment on new reviews (taken samples from paralleldots)
-g = open('parallel_dots_sample.txt','r')
-for line in g.readlines():
-    print("{} -> Prediction: {}",line.strip(),nb.test(line))
+# g = open('parallel_dots_sample.txt','r')
+# for line in g.readlines():
+#     print("{} -> Prediction: {}",line.strip(),nb.test(line))
