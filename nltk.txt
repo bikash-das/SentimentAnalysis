@@ -1,2 +1,2 @@
-nltk.corpus
-nltk.tokenize
+stopwords
+TreebankWordTokenizer
