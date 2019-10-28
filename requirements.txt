@@ -9,4 +9,3 @@ numpy==1.17.3
 six==1.12.0
 Werkzeug==0.16.0
 WTForms==2.2.1
-nltk>=3.4.5
