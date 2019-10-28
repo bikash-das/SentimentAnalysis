@@ -3,8 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
-import pickle
-
+from naive_bayes_classifier import NB
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '1234252333' # some secret key
@@ -13,34 +12,13 @@ app.config['SECRET_KEY'] = '1234252333' # some secret key
 # model = pickle.load(open('model.pickle','rb'))
 # p_in = open("model.pkl","rb")  # it needs class def, so dont' forget -> from naive_bayes_classifier import NB
 # classifier = pickle.load(p_in)
-from naive_bayes_classifier import NB
-import csv
-filename = 'IMDB_dataset_sa.csv'
-with open(filename, 'r') as csvfile:
-    csvreader = csv.reader(csvfile)
-    reviews = []
-    labels = []
-    # extract rows
-    i= 0
-    for row in csvreader:
-        if csvreader.line_num == 1:
-            continue  #skip first row
-        reviews.append(row[0])
-        labels.append(row[1].upper())
-    # print("Done.")
-
-nb = NB(reviews,labels)
-
-p_out = open("model.pkl","wb")
-pickle.dump(nb, p_out)
-p_out.close()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    import pickle
     p_in = open("model.pkl","rb")  # it needs class def, so dont' forget -> from naive_bayes_classifier import NB
     classifier = pickle.load(p_in)
-
     pred = None
     form = reviewForm()
     if form.validate_on_submit():
