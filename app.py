@@ -20,7 +20,7 @@ def index():
     form = reviewForm()
     if form.validate_on_submit():
         review = form.review.data
-        pred = classifier.test(review)
+        pred = classifier.test(review) #use the classifier
     return render_template('home.html', form=form, pred=pred)
 
 # for handling errors -------------------------------
