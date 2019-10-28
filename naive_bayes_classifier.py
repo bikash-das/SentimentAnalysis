@@ -22,7 +22,8 @@ class NB:
         self.pos_label_count = 0
         self.neg_label_count = 0
         
-        self.process(self.reviews,self.labels)
+        # self.process(self.reviews,self.labels)
+        self.process(self.reviews[:100],self.labels[:100])
         # self.process(self.reviews[:40000], self.labels[:40000])
         # self.fit(self.reviews[10000:], self.labels[10000:])
         
@@ -107,27 +108,6 @@ class NB:
                 correct += 1 
         # print("total correct: {} and incorrect: {}".format(correct,len(test_set_labels)-correct))
 
-if __name__ == '__main__':        
-    import csv
-    filename = 'IMDB_dataset_sa.csv'
-    with open(filename, 'r') as csvfile:
-        csvreader = csv.reader(csvfile)
-        reviews = []
-        labels = []
-        # extract rows
-        i= 0
-        for row in csvreader:
-            if csvreader.line_num == 1:
-                continue  #skip first row
-            reviews.append(row[0])
-            labels.append(row[1].upper())
-        # print("Done.")
-
-    nb = NB(reviews,labels)
-
-    p_out = open("model.pkl","wb")
-    pickle.dump(nb, p_out)
-    p_out.close()
 
 
 
