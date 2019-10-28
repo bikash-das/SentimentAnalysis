@@ -1,5 +1,5 @@
 from nltk.corpus import stopwords # for filtering review by removing stopwords like 'the', 'is', 'they', ...
-from nltk.tokenize import word_tokenize 
+from nltk.tokenize import TreebankWordTokenizer
 from collections import Counter
 import numpy as np
 import pickle
@@ -41,8 +41,8 @@ class NB:
         stop_words.add('.')
         stop_words.add('br')
         stop_words.add('”')
-
-        word_tokens = word_tokenize(text) 
+        tokenizer = TreebankWordTokenizer()
+        word_tokens = tokenizer.tokenize(text) 
 
         filtered_sentence = [w for w in word_tokens if not w in stop_words] 
 
