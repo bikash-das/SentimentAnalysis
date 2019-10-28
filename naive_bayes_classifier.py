@@ -22,8 +22,8 @@ class NB:
         self.pos_label_count = 0
         self.neg_label_count = 0
         
-        # self.process(self.reviews,self.labels)
-        self.process(self.reviews[:100],self.labels[:100])
+        self.process(self.reviews,self.labels)
+        # self.process(self.reviews[:100],self.labels[:100])
         # self.process(self.reviews[:40000], self.labels[:40000])
         # self.fit(self.reviews[10000:], self.labels[10000:])
         
