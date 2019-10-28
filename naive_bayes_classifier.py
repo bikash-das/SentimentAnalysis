@@ -1,8 +1,7 @@
-from nltk.corpus import stopwords # for filtering review by removing stopwords like 'the', 'is', 'they', ...
-from nltk.tokenize import TreebankWordTokenizer
 from collections import Counter
 import numpy as np
 import pickle
+import string
 class NB:
     def __init__(self,reviews,labels):
         self.reviews = reviews
@@ -27,7 +26,14 @@ class NB:
         # self.process(self.reviews[:40000], self.labels[:40000])
         # self.fit(self.reviews[10000:], self.labels[10000:])
         
-        
+    
+    def tokenize_custom(self,text):
+        words = text.split()
+        # remove punctuation
+        table = str.maketrans(' ',' ',string.punctuation)
+        stripped = [w.translate(table) for w in words]
+        return stripped
+
     
     def clean(self,text):
         '''
@@ -35,15 +41,9 @@ class NB:
             :params: uncleaned text review
             :out_params: cleaned review
         '''
+        stop_words = {'should', 'some', 'a', 'once', 'those', 'only', 'each', 'and', 'haven', 'who', 'about', 'then', 'him', 'that', 'with', 'needn', 'can', 'y', 'above', 'yourself', 'myself', "should've", 'again', "shouldn't", 'your', 'how', 'been', 'between', 'was', 'what', 'do', 'll', 'shouldn', 'which', 'more', 'out', 'it', 'its', 'the', "hasn't", 'or', 'same', 'don', 'you', 'i', "aren't", "she's", 'being', 'weren', "isn't", 'is', 'for', "wouldn't", 'during', "it's", 'here', 'm', 'ain', 'mightn', 'has', 'ours', 'they', 'an', 'aren', "you'd", 'to', "shan't", 'at', 'such', 'down', "didn't", 'their', 'both', "haven't", 'if', "doesn't", "you're", 'there', 'wouldn', 'why', 'yourselves', 've', 'wasn', 'before', 't', 'itself', "hadn't", 'this', 'after', 'most', 'when', 'ma', 'had', "needn't", 'hadn', 'against', 'too', "don't", 'me', "weren't", 'any', 'all', "won't", 'of', 'we', 'whom', 'below', "you've", 'not', 'having', 'are', 'were', 'did', 'his', "couldn't", 'them', "mustn't", 'didn', 'be', "mightn't", 'shan', 'nor', 'does', 'very', 'yours', 'than', 'doing', 'through', 'up', 'won', 'so', 'she', 're', 'because', 'until', 'under', 'by', 'few', 'now', "that'll", 'himself', 'isn', 'doesn', 'as', 'in', 'while', 'will', 'my', 'hasn', 'her', 'hers', 'o', 'have', 'herself', 'd', 'where', 'over', 'couldn', 'other', "wasn't", 'theirs', 'further', 'off', 'he', 'ourselves', 'themselves', 'these', 'from', 'just', 'own', 'am', 'no', 'but', 'our', "you'll", 'mustn', 'into', 's', 'on',',','.','br','”'}
         text = text.lower()
-        stop_words = set(stopwords.words('english')) 
-        stop_words.add(',')
-        stop_words.add('.')
-        stop_words.add('br')
-        stop_words.add('”')
-        tokenizer = TreebankWordTokenizer()
-        word_tokens = tokenizer.tokenize(text) 
-
+        word_tokens = self.tokenize_custom(text)
         filtered_sentence = [w for w in word_tokens if not w in stop_words] 
 
         filtered_sentence = [] 
