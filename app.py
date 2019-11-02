@@ -15,6 +15,7 @@ app.config['SECRET_KEY'] = '1234252333' # some secret key
 
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route("/home", methods=['GET', 'POST'])
 def index():
     import pickle
     p_in = open("model.pkl","rb")  # it needs class def, so dont' forget -> from naive_bayes_classifier import NB
@@ -25,6 +26,10 @@ def index():
         review = form.review.data
         pred = classifier.test(review) #use the classifier
     return render_template('home.html', form=form, pred=pred)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 # for handling errors -------------------------------
 @app.errorhandler(404)
