@@ -127,26 +127,27 @@
                             <td>Chinese Chinese Chinese Tokyo Japan</td>
                             <td>?</td>
                         </tr>               
-                    
+                
                     </table>
                 </div>
             </div>
             <p class="text-success"><b>Inputs are Text document and it's associated labels which is <b>c</b> or <b>j</b></b></p>
             <div class="panel panel-danger">
-                <div class="panel-body">
-                    <p>So our first task would be to find the <b class="text-info">priors</b> which is given by</p>
-                    <p class="">P(c) = total count of docs with <em>c</em> label divided by total no. of docs</p>
-                    <p class="">P(j) = total count of docs with <em>j</em> label divided by total no. of docs</p>
-                    
+                    <div class="panel-body">
+                        <div class="panel-heading">We Have</div>
+                        <p>Total number of documents in training sets = 4</p>
+                        <p>Total number of documents in class <b>c</b> = 3</p>
+                        <p>Total number of documents in class <b>j</b> = 1</p>
+                    </div>
                 </div>
-            </div>
             <div class="panel panel-danger">
                 <div class="panel-body">
-                    <p>Total number of documents in training sets = 4</p>
-                    <p>Total number of documents in class <b>c</b> = 3</p>
-                    <p>Total number of documents in class <b>j</b> = 1</p>
+                    <p>So our first task would be to find the <b class="text-info">Priors</b> which is given by</p>
+                    <p class="">P(c) = total count of docs with <em>c</em> label divided by total no. of docs</p>
+                    <p class="">P(j) = total count of docs with <em>j</em> label divided by total no. of docs</p>                    
                 </div>
             </div>
+            
             <div class="panel panel-success">
                     <div class="panel-body">
                         <h4 class="text-info">Priors</h4>
@@ -162,7 +163,7 @@
                         <p> P(w|c) = count(w,c) + 1 / count(c) + |V| </p>                          
                             <small>which can be read as 
                                 Probability of a word 'w' given class 'c' equals
-                                count of w in class c plus 1 divided by count of document in class c plus 1</small> 
+                                count of w in class c plus 1 divided by count of document in class c plus Vocabulary</small> 
                         
                     </div>
             </div>
