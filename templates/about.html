@@ -26,6 +26,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/api">API</a></li>
+
             </ul>
         </div>
     </div>
@@ -37,10 +39,58 @@
         <div class="col-sm-6">            
             <h2 class="text-success">Sentiment Analysis </h2>
                 <p class="text-muted">Using Naive Bayes 
-                    <a href="https://github.com/bi-kash/SentimentAnalysis" class="btn btn-info btn-sm">Click for Source Code</a>
+                    <a href="https://github.com/bi-kash/SentimentAnalysis" class="btn btn-primary active btn-sm">Click for Source Code</a>
                 </p> 
-            <p>Let's go through an example to understand the algorithm.</p>
-            <p>Let's use consider the following table</p>
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Algorithm</div>
+                <div class="panel-body">   
+                    <ol>
+                        <li>
+                            From training corpus, extract Vocabulary
+                        </li>
+                        <li>
+                                Calculate P(c<sub>j</sub>) terms
+                                <ul>
+                                        <li>
+                                            For each c<sub>j</sub> in C do
+                                        </li>
+                                        <li>
+                                            docs<sub>j</sub> &larr; all docs with class = c<sub>j</sub>
+                                        </li>
+                                        <li>
+                                            P(c<sub>j</sub>) &larr; |docs<sub>j</sub>| divided by 
+                                            |total # documents| 
+                                        </li>
+                                    </ul>     
+                        </li>
+                        <li>
+                                Calculate P(w<sub>k</sub> | c<sub>j</sub>) terms
+                                <ul>
+                                        <li>
+                                            Text &larr; single doc containing all docs<sub>j</sub>
+                                        </li>
+                                        <li>
+                                            For each word w<sub>k</sub> in Vocabulary
+                                            <ul>
+                                                <li>
+                                                    n<sub>k</sub> &larr; # of occurences of w<sub>k</sub> in Text<sub>j</sub>
+                                                </li>
+                                                <li>
+                                                    P(w<sub>k</sub> | c<sub>j</sub>) &LeftArrowBar; n<sub>k</sub> + 1 divided by n + |Vocabulary|
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                        </li>
+                    </ol> 
+                </div>
+            </div>
+
+
+            <h4>Let's go through an example to understand the algorithm.</h4>
+            <p class="text-muted">Let's us consider the following table</p>
             <div class="panel panel-danger">
                     <div class="panel-body">
                     <table class="table">
@@ -81,10 +131,10 @@
                     </table>
                 </div>
             </div>
-            <p>Inputs are Text document and it's associated labels which is <b>c</b> or <b>j</b></p>
+            <p class="text-success"><b>Inputs are Text document and it's associated labels which is <b>c</b> or <b>j</b></b></p>
             <div class="panel panel-danger">
                 <div class="panel-body">
-                    <p class="panel-heading">So our first task would be to find the <b class="text-info">priors</b> which is given by</p>
+                    <p>So our first task would be to find the <b class="text-info">priors</b> which is given by</p>
                     <p class="">P(c) = total count of docs with <em>c</em> label divided by total no. of docs</p>
                     <p class="">P(j) = total count of docs with <em>j</em> label divided by total no. of docs</p>
                     
@@ -106,7 +156,7 @@
             </div>
 
             <br>
-            <p>Our next task would be to find the <span class="text-info">Conditional Probability</span> of each word for each class</p>
+            <p>Our next task would be to find the <span class="text-success"><b>Conditional Probability</b></span> of each word for each class</p>
             <div class="panel panel-success">
                     <div class="panel-body">
                         <p> P(w|c) = count(w,c) + 1 / count(c) + |V| </p>                          
@@ -118,27 +168,27 @@
             </div>
             <div class="panel panel-success">
                     <div class="panel-body">
-                        <p>Calculate Vocabulary (total number of unique words in the training set)</p>
+                        <p class="text-success"><b>Calculate Vocabulary (total number of unique words in the training set)</b></p>
                          <p> Vocabulary |V|  = 6</p>
                     </div>
             </div>
             <div class="panel panel-success">
                     <div class="panel-body">
-                        <p>Calculate total number of words in each classes.</p>
+                        <p class="text-success"><b>Calculate total number of words in each classes.</b></p>
                         <p>Total number of words in Class 'c' = 8</p>
                         <p>Total number of words in class 'j' = 3</p>
                     </div>
             </div>
             <div class="panel panel-success">
                     <div class="panel-body">
-                        <p>Now we find the <span class="text-success">Conditional Probability</span> of each word for each class.</p>
+                        <p>Now we find the <span class="text-success"><b>Conditional Probability</b></span> of each word for each class.</p>
                         <p>
                             P(Chinese | c)  = (5 + 1) / (8 + 6) = 3/7
                         </p>
                         <p class="text-info">Explanation:</p>
                         <p>
                             P(<span class="text-danger">Chinese | c)</span> = 5 (the word Chinese occures 5 times in class c)
-                        <p>Count(c) = 8 (total words in class 'c')</p>
+                        <p><span class="text-danger">Count(c)</span> = 8 (total words in class 'c')</p>
                          <p>|V| = 6 </p> 
                         </p>
                     </div>
@@ -212,7 +262,7 @@
                             <td colspan="3">Since<span class="text-success"> 0.0003 &gt; 0.0001</span>, we assign document 5 with label <b>c</b></td>
                         </tr>
                         <tr>
-                            <td colspan="3">Therefore our test document 5 which was is assigned label <mark >c</mark></td>
+                            <td colspan="3">Therefore our test document 5 is assigned label <mark >c</mark></td>
                         </tr>
             </table>
             <br>
