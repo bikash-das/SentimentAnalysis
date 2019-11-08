@@ -27,6 +27,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/api">API</a></li>
+
             </ul>
         </div>
     </div>
@@ -35,68 +37,59 @@
 
 
 {% block content %}
-<div class="container" style="margin-top:50px">
+<div class="container" style="margin-top:60px">
   <div class = "row">    
-    <div class="col-sm-4">
-      <h2 class="text-danger">Sample Reviews I </h2>     
-          
-          <p>Angelina's Ristorante is an upscale fine dining establishment in Bonita Springs. Florida that will wow you with outstanding service from the time you get out of your car. 
-            <small class="text-danger">Positive</small>
-          </p>
-          <!-- <p>Their menu features a selection of appetizers, fresh seafood, meats, homemade pasta made with OO flour for a light texture available in a small or entree size as well as vegetarian selection.</p> -->
-          <p> Worst Service I paid money also and food was not delivered..no proper customers care service also to contact.
-            <small class="text-danger">Negative</small>
-          </p>
-          <!-- <p> This is like a B&B. There is no lobby when you enter the building, Just a lift which you need to take to the 2nd floor for the hotel.</p> -->
-          <p> "Sound quality is crisp and clear", Trebel is quite high and that one was really awesome.   
-            <small class="text-danger">Positive</small> 
-          </p>
-                
-        
-    </div>
-      <div class="col-sm-4">
-        <h2 class="text-success">Sentiment Analysis</h2>
-        <p class="text-muted">Enter a Review to check it's polarity </p>
-        <br>
-      <form method="POST">
-        {{ form.hidden_tag() }}
-         {{ form.review(class='form-control',rows=4,placeholder="Enter a review") }}
-         <br>
-        {{ form.submit(class='btn btn-primary btn-lg') }}
-      </form>
-      <br>
-      <div>
-      <p>
-        {% if pred == 'POSITIVE' %} 
-          <!-- {{ pred }}  -->
-          <img id="positive" src="static/positive.png">
-          <h3 class="text-success">positive</h3>
-        {% elif pred == 'NEGATIVE' %}
-        <img id="negative" src="static/negative.png">
-        <h3 class="text-success">Negative</h3>
-        {% endif %}
-      </p>
-      </div>
-    </div>
-      <div class="col-sm-4">
-      <h2 class="text-danger">Sample Reviews II</h2>
-        <p>
-            I must respectfully disagree. While it's true that Manos was slow, poorly put together, and disgusting, it had a plot and interesting characters. For the plot of this one, someone could write, simply, N/A.
+    <!-- <div class="col-sm-4"> 
 
-            Out of ten stars, I vote...for them to invent a new numbering system to include negative numbers.
-            
-            Brrrring!
-            <small class="text-danger">Negative</small>
-        </p>
-        <p>
-            “Literally ur facebook message app is useless, you only want it to increase profit. Please fix yourself. Its sad @facebook“
-            <small class="text-danger">Negative</small>
-        </p>
-        <p>
-            <em>It's a masterpiece </em><br>
-            Mr. Robot is underrated. Definitely deserves better. Everybody can't understand this series.
-            <small class="text-danger">Positive</small>
-        </p>
+    </div> -->
+      <div class="col-sm-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="font-size: 20px">Sentiment Analysis</div>
+          <div class="panel-body">
+              <p class="text-muted">Enter a Review to check it's polarity </p>
+              <br>
+             <form method="POST">
+              {{ form.hidden_tag() }}
+               {{ form.review(class='form-control',rows=4,placeholder="Enter a review") }}
+               <br>
+              {{ form.submit(class='btn btn-success btn-lg') }}
+              </form>
+              <br>
+              <div>
+                <p>
+                {% if pred == 'POSITIVE' %} 
+                  <!-- {{ pred }}  -->
+                  <img id="positive" src="static/positive.png">
+                  <h3 class="text-success">positive</h3>
+                {% elif pred == 'NEGATIVE' %}
+                <img id="negative" src="static/negative.png">
+                <h3 class="text-success">Negative</h3>
+                {% endif %}
+                </p>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-sm-6">
+          <div class="panel panel-info">
+              <div class="panel-heading" style="font-size: 20px">Sample Reviews</div>
+              <div class="panel-body">   
+              <p>
+                  I must respectfully disagree. While it's true that Manos was slow, poorly put together, and disgusting, it had a plot and interesting characters. For the plot of this one, someone could write, simply, N/A.
+
+                  Out of ten stars, I vote...for them to invent a new numbering system to include negative numbers.
+                  
+                  Brrrring!
+                  <small class="text-danger">Negative</small>
+              
+                <p>
+                    It's a masterpiece. Mr. Robot is underrated. Definitely deserves better. Everybody can't understand this series.
+                    <small class="text-danger">Positive</small>
+                </p>
+                <p> Sound quality is crisp and clear", Trebel is quite high and that one was really awesome.
+                    <small class="text-danger">Positive</small> 
+                  </p>
     </div>
   </div>
 
