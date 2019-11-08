@@ -105,6 +105,7 @@ class NB:
                 test_neg += self.neg_cp[word]
         return ('POSITIVE' if test_pos > test_neg else 'NEGATIVE') 
     
+    
     def fit(self, test_set_reviews, test_set_labels):
         correct = 0
         for r,l in zip(test_set_reviews, test_set_labels):
