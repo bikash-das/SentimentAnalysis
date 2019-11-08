@@ -31,6 +31,10 @@ def index():
 def about():
     return render_template("about.html")
 
+@app.route("/api")
+def api():
+    return render_template("api.html")
+
 # for handling errors -------------------------------
 @app.errorhandler(404)
 def page_not_found(e):
