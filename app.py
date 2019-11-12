@@ -47,7 +47,7 @@ def process():
     polarity="error"
 
     if len(r) == 0:
-        abort(500)  
+        return jsonify({'result':'Empty Payload'})  
     if len(r) == 1:
         polarity = getSentiment(r[0])
     if len(r) > 1:
