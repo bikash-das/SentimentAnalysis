@@ -10,7 +10,7 @@
 </head>
 <body>
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle"
@@ -32,10 +32,86 @@
     </div>
 </div>
 {% endblock %}
-<div class="container" style="margin-top:50px">
+<div class="container" style="margin-top:60px">
         <div class = "row"> 
-            <div class="col-sm-12">
-                <h1>Contents yet to be added</h1>
+            <div class="col-sm-8">
+                <div class="panel panel-info">
+                        <div class="panel-heading">Follow the Procedure to use the API</div>
+                        <div class="panel-body">  
+                            <ol>
+                                <li>Convert the reviews into a list</li>
+                                <ul>
+                                    <li>If reviews is in a text file, load the file </li>
+                                    <code>review_file = open('sample_reviews.txt','r')</code> 
+                                    <li>Convert it into list</li>
+                                    <code>payload = list(review_file)</code>
+                                </ul>
+                                <li>Call requests.post on payload</li>
+                                
+                                <code>response = requests.post("https://sa-nb.herokuapp.com/api/v1.0", json=payload)</code>
+
+                                <li>Check if server response is ok and proceed</li>                                    
+                                            <code>
+                                            if response.ok: <br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;    data = json.loads((response.text)) <br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;    result = data['result'] 
+                                                <!-- print(result) -->
+                                            </code>
+                                <li>If everything is ok, use <mark>result</mark> variable that has the polarity of the reviews</li>
+                            </ol>
+                        </div>
+
+                </div> <!-- panel ends here-->
+                 
+                <div class="panel panel-info">
+                        <div class="panel-heading">Sample Reviews (sample_reviews.txt)</div>
+                        <div class="panel-body">
+                         <ul style="list-style-type: none">
+                             <li>
+                                 <p>   I must respectfully disagree. While it's true that Manos was slow, poorly put together, and disgusting, it had a plot and interesting characters. For the plot of this one, someone could write, simply, N/A. Out of ten stars, I vote...for them to invent a new numbering system to include negative numbers. Brrrring!</p>
+                             </li>
+                             <li>
+                                    <p>It's a masterpiece. Mr. Robot is underrated. Definitely deserves better. Everybody can't understand this series.</p>
+                             </li>
+                             <li>
+                                    <p>Sound quality is crisp and clear", Trebel is quite high and that one was really awesome.</p>
+                             </li>
+                         </ul>      
+                        </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Sample Usage of the API in <mark>Python</mark></div>
+                    <div class="panel-body">
+                           <code>import requests</code><br>
+                           <code>import json</code><br>
+                           <code>review_file = open('sample_reviews.txt','r') </code> #load the file if reviews are stored in a file<br>
+                           <code>payload = list(review_file)  </code> # convert the file into a list <br>
+                           <code>url = "https://sa-nb.herokuapp.com/api/v1.0" </code> # Set API endpoint <br>
+                           <code>response = requests.post(url, json=payload)</code> # Post the data <br>
+                           <code>
+                                if response.ok: <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;    data = json.loads((response.text)) <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;    result = data['result']  <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;    print(result)   </code># Reviews Polarity <br>
+                           
+                           <code>else:</code> <br>
+                           <code>&nbsp;&nbsp;&nbsp;&nbsp;   print("Error Occurred")</code>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                        <div class="panel-heading">Output</div>
+                        <div class="panel-body">
+                            <samp>
+                                    $ python3 test_api.py <br>
+                                    ['NEGATIVE', 'POSITIVE', 'POSITIVE']
+                                    
+                            </samp>
+                        </div>
+                </div>
+
+            </div> <!-- col-sm-8 ends-->
+            
+            <div class="col-sm-4">
             </div>
         </div>
 </div>

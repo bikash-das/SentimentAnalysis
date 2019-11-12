@@ -57,7 +57,7 @@ def process():
    
     return jsonify({'result': polarity}), 201
 
-# ---------------------------Basic API Ends
+# ---------------------------Basic API Ends--------------------------------------
 # for handling errors -------------------------------
 @app.errorhandler(404)
 def page_not_found(e):
